@@ -11,11 +11,6 @@ use App\Models\Photo;
 
 class DataController extends Controller
 {
-    // public function __invoke(Request $request)
-    // {
-    //     $action = $request->action;
-    //     return $this->geAllUsers();
-    // }
 
     public function fetchUsers()
     {
@@ -46,16 +41,6 @@ class DataController extends Controller
                 'user' => $user
             ]
         );
-    }
-
-    public function updatePersist($type, $id, $payload)
-    {
-        // $type = 
-    }
-
-    private function updatePhoto()
-    {
-
     }
 
 }

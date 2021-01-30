@@ -49,9 +49,7 @@
 <script>
 import ProfileInfo from 'src/components/ProfileInfo.vue'
 import { mapActions, mapState } from 'vuex'
-// import DeleteDialog from 'src/components/DeleteDialog.vue'
 import { get } from 'lodash'
-// import { Notify } from 'quasar'
 
 export default {
   components: { ProfileInfo },
@@ -64,9 +62,6 @@ export default {
     return {
       deleteDialogState: false
     }
-  },
-  mounted () {
-    // this.deleteDialogState = true
   },
   computed: {
     ...mapState({

@@ -46,12 +46,10 @@
 </template>
 
 <script>
-// import ProfileInfo from 'src/components/ProfileInfo.vue'
 import { mapActions, mapState } from 'vuex'
 import { openURL } from 'quasar'
 
 export default {
-  // components: { ProfileInfo },
   name: 'PageIndex',
   created () {
     const id = this.$route.params.albumId
