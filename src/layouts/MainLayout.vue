@@ -30,10 +30,9 @@
           header
           class="text-grey-8 text-bold"
         >
-          Add Person
         </q-item-label>
 
-        <q-item>
+        <!-- <q-item>
           <q-item-section>
             <q-input label="Name" />
           </q-item-section>
@@ -43,13 +42,7 @@
           <q-item-section>
             <q-input label="Email" />
           </q-item-section>
-        </q-item>
-
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
+        </q-item> -->
       </q-list>
     </q-drawer>
 
@@ -60,24 +53,13 @@
 </template>
 
 <script>
-import EssentialLink from 'components/EssentialLink.vue'
-
-const linksData = [
-  {
-    title: 'Add New Person',
-    caption: '',
-    icon: 'record_voice_over'
-    // link: 'https://forum.quasar.dev'
-  }
-]
 
 export default {
   name: 'MainLayout',
-  components: { EssentialLink },
+  // components: { EssentialLink },
   data () {
     return {
-      leftDrawerOpen: false,
-      essentialLinks: linksData
+      leftDrawerOpen: false
     }
   }
 }

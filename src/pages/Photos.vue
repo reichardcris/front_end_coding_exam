@@ -33,6 +33,9 @@
                 <q-btn size="10px">
                   <q-icon name="edit" />
                 </q-btn>
+                <q-btn size="10px" @click="__onHandleRedirectPhoto(list.url)">
+                  <q-icon name="visibility" />
+                </q-btn>
               </div>
             </q-img>
           </div>
@@ -45,6 +48,7 @@
 <script>
 // import ProfileInfo from 'src/components/ProfileInfo.vue'
 import { mapActions, mapState } from 'vuex'
+import { openURL } from 'quasar'
 
 export default {
   // components: { ProfileInfo },
@@ -71,7 +75,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions('users', ['requestPhotoFromApi'])
+    ...mapActions('users', ['requestPhotoFromApi']),
+    __onHandleRedirectPhoto (link) {
+      openURL(link)
+    }
   }
 }
 </script>

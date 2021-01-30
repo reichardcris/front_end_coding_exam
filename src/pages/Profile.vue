@@ -15,7 +15,6 @@
             v-for="(list, key) in albums.albums"
             :key="key"
             class="cursor-pointer col-md-3 col-xs-6 col-sm-6"
-            @click="$router.push({ name: 'photo', params: { albumId: list.id } })"
           >
             <q-img
               :src="getRandomImage"
@@ -33,6 +32,9 @@
                 </q-btn>
                 <q-btn size="10px">
                   <q-icon name="edit" />
+                </q-btn>
+                <q-btn size="10px" @click="$router.push({ name: 'photo', params: { albumId: list.id } })">
+                  <q-icon name="visibility" />
                 </q-btn>
               </div>
 
