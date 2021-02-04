@@ -8,10 +8,6 @@ export const fetch = ({ commit }, id) => {
         localStorage.setItem('albums', JSON.stringify(data))
       }
       commit('SET_PAYLOAD', JSON.parse(localStorage.getItem('albums')))
-      // const albums = filter(data, items => {
-      //   return items.userId === parseInt(id)
-      // })
-      // commit('SET_PAYLOAD', albums)
     })
 }
 

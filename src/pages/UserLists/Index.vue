@@ -4,7 +4,7 @@
       <q-card-section>
         <div class="row justify-center">
           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <q-input placeholder="Find Person..." icon="find">
+            <q-input v-model="search" placeholder="Find Person..." icon="find">
               <template v-slot:prepend>
                 <q-icon name="search" />
               </template>
@@ -18,7 +18,7 @@
       <q-card-section>
         <div class="row justify-center">
           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <user-list-items :items="getPayload" />
+            <user-list-items :items="findPerson" />
           </div>
         </div>
       </q-card-section>
@@ -30,6 +30,7 @@
 import UserListItems from 'src/components/UserListItems.vue'
 import { mapActions, mapGetters } from 'vuex'
 import { QSpinner } from 'quasar'
+import { filter } from 'lodash'
 
 export default {
   name: 'PageIndex',
@@ -47,12 +48,20 @@ export default {
   },
   data () {
     return {
+      search: null
     }
   },
   mounted () {
   },
   computed: {
-    ...mapGetters('users', ['getPayload'])
+    ...mapGetters('users', ['getPayload']),
+    findPerson () {
+      return filter(this.getPayload, ({ name }) => {
+        return this.search
+          ? name.includes(this.search)
+          : true
+      })
+    }
   },
   methods: {
     ...mapActions('users', ['fetch'])

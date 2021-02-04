@@ -69,24 +69,18 @@
               </div>
             </div>
           </q-tab-panel>
+          <q-tab-panel name="about">
+            <about :info="getProfileInfo" />
+          </q-tab-panel>
       </q-tab-panels>
 
-      <q-dialog v-model="editPrompt" persistent>
-      <q-card style="min-width: 350px">
-        <q-card-section>
-          <div class="text-h6">Edit Title</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          <q-input dense v-model="editItemModel.title" autofocus @keyup.enter="prompt = false" />
-        </q-card-section>
-
-        <q-card-actions align="right" class="text-primary">
-          <q-btn flat label="Cancel" v-close-popup />
-          <q-btn flat label="Set" @click="editAlbum" v-close-popup />
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
+    <!-- Edit Dialog -->
+      <edit-dialog
+        :editPrompt="editPrompt"
+        :editItemModel="editItemModel"
+        @onChangeState="_ => editPrompt = _"
+        @onClick="_ => { editItemModel = _; editAlbum(); }"
+      />
   </q-page>
 </template>
 
@@ -94,6 +88,8 @@
 import { mapActions, mapGetters } from 'vuex'
 import { QSpinner, uid } from 'quasar'
 import ProfileInfo from 'src/components/ProfileInfo'
+import About from 'src/components/About'
+import EditDialog from 'src/components/EditDialog'
 import { set, find, cloneDeep, filter } from 'lodash'
 
 export default {
@@ -113,7 +109,7 @@ export default {
   },
   data () {
     return {
-      tab: 'albums',
+      tab: 'about',
       editPrompt: false,
       editItemModel: {
         title: null
@@ -165,12 +161,16 @@ export default {
     },
     editAlbum () {
       const { id, title } = this.editItemModel
-      set(find(this.getPayload, { id }), 'title', title)
-      this.updateItem(this.getPayload)
+      const payload = cloneDeep(this.getPayload)
+      const album = find(payload, { id })
+      set(album, 'title', title)
+      this.updateItem(payload)
     }
   },
   components: {
-    ProfileInfo
+    ProfileInfo,
+    EditDialog,
+    About
   }
 }
 </script>

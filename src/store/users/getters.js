@@ -1,3 +1,7 @@
+import { isEmpty } from 'lodash'
+
 export const getPayload = ({ payload }, getters, rootState, rootGetters) => {
-  return payload ?? JSON.parse(localStorage.getItem('users'))
+  return isEmpty(payload)
+    ? JSON.parse(localStorage.getItem('users'))
+    : payload
 }

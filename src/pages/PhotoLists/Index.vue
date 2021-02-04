@@ -1,6 +1,6 @@
 <template>
   <q-page class="bg-grey-2">
-    <profile-info class="bg-white" :name="(getProfileInfo) ? getProfileInfo.name : ''" />
+    <profile-info class="bg-white text-capitalize" :name="(getProfileInfo) ? getProfileInfo.title : ''" />
     <q-card flat class="bg-white">
       <q-card-section>
         <div class="text-h4 q-mb-md text-bold text-grey-6">Photos...</div>
@@ -47,6 +47,7 @@
                 @click="__onHandleRedirectPhoto(photo.url)"
                 :src="photo.thumbnailUrl"
                 alt="No Image Found"
+                style="min-height: 100px"
               />
             </q-card>
           </div>
@@ -72,7 +73,7 @@ import { mapActions, mapGetters } from 'vuex'
 import { QSpinner, openURL, uid } from 'quasar'
 import ProfileInfo from 'src/components/ProfileInfo'
 import { set, find, cloneDeep, filter } from 'lodash'
-import EditDialog from 'src/components/EditDialog.vue'
+import EditDialog from 'src/components/EditDialog'
 
 export default {
   name: 'PageIndex',
@@ -99,20 +100,21 @@ export default {
     }
   },
   mounted () {
+    console.log(this.getPayload)
   },
   computed: {
     ...mapGetters('photos', ['getPayload']),
-    ...mapGetters('users', {
-      user: 'getPayload'
+    ...mapGetters('albums', {
+      albums: 'getPayload'
     }),
     getProfileInfo () {
       const id = this.$route.params.albumId
-      return find(this.user, { id: parseInt(id) })
+      return find(this.albums, { id: parseInt(id) })
     },
     filteredPhotos () {
-      const id = parseInt(this.$route.params.albumId)
+      const id = String(this.$route.params.albumId)
       return filter(this.getPayload, items => {
-        return items.albumId === id
+        return String(items.albumId) === id
       })
     }
   },
@@ -122,7 +124,7 @@ export default {
       openURL(link)
     },
     appendPhoto ({ title, url }) {
-      const id = parseInt(this.$route.params.albumId)
+      const id = String(this.$route.params.albumId)
       const payload = cloneDeep(this.getPayload)
       payload.push({
         title,
