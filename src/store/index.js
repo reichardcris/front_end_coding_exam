@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import users from './users'
+import photos from './photos'
+import albums from './albums'
 
 Vue.use(Vuex)
 
@@ -17,7 +19,9 @@ Vue.use(Vuex)
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      users
+      users,
+      albums,
+      photos
     },
 
     // enable strict mode (adds overhead!)

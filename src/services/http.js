@@ -1,15 +1,13 @@
 /* eslint-disable */
-// import Vue from 'vue';
 import axios from 'axios';
 import { Notify } from 'quasar';
-// import router from 'src/router';
 import { map, each, forOwn, get } from 'lodash';
 
 const HTTP_API = (baseURL = null, opts = {}) => {
   let token = null;
 
   const httpInstance = axios.create({
-    baseURL: baseURL ?? `${process.env.WEB_ENDPOINT}/api`,
+    baseURL: baseURL ?? `${process.env.WEB_ENDPOINT}/`,
     headers: {
       Authorization: `Bearer ${token}`,
     },

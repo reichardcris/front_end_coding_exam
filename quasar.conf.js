@@ -46,7 +46,7 @@ module.exports = function (/* ctx */) {
     build: {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
       env: {
-        WEB_ENDPOINT: 'http://127.0.0.1:8000'
+        WEB_ENDPOINT: 'https://jsonplaceholder.typicode.com'
       },
       // transpile: false,
 
@@ -101,7 +101,10 @@ module.exports = function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: [
+        'Loading',
+        'Dialog'
+      ]
     },
 
     // animations: 'all', // --- includes all animations

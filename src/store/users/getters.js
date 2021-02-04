@@ -1,8 +1,3 @@
-export const getAllUsers = ({ users }) =>
-  users
-
-export const albums = ({ albums }) =>
-  albums
-
-export const photos = ({ photos }) =>
-  photos
+export const getPayload = ({ payload }, getters, rootState, rootGetters) => {
+  return payload ?? JSON.parse(localStorage.getItem('users'))
+}

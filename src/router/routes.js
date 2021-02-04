@@ -4,12 +4,11 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') },
-      { path: 'profile/:userId', name: 'profile', component: () => import('pages/Profile.vue') },
-      { path: 'photo/:albumId', name: 'photo', component: () => import('pages/Photos.vue') }
+      { path: '/', name: 'users', component: () => import('pages/UserLists/Index.vue') },
+      { path: 'profile/:userId', name: 'album', component: () => import('pages/AlbumLists/Index.vue') },
+      { path: 'photo/:albumId', name: 'photo', component: () => import('pages/PhotoLists/Index.vue') }
     ]
   },
-
   // Always leave this as last one,
   // but you can also remove it
   {
